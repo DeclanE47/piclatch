@@ -1,0 +1,24 @@
+{
+  "name": "piclatch-image-downloader",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "tsc --noEmit && node scripts/build.mjs",
+    "test": "vitest run",
+    "test:browser": "node scripts/browser-test.mjs",
+    "package": "node scripts/package.mjs",
+    "preview": "vite --host 127.0.0.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.28",
+    "fflate": "^0.8.2",
+    "playwright": "^1.56.1",
+    "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.2",
+    "vitest": "^4.0.8"
+  }
+}

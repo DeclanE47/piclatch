@@ -1,0 +1,13 @@
+# Privacy policy — PicLatch beta
+
+Effective 1 November 2026. PicLatch collects and transmits no analytics, account details, browsing history or image collections to its publisher. No advertising, accounts or remote executable code.
+
+Your browser connects directly to image hosts to display previews and download original files. Those hosts receive ordinary network requests and may receive credentials according to browser behaviour. PicLatch does not proxy those requests.
+
+Preferences (gesture, pause state, exclusions and subfolder) are stored in local extension storage. Temporary image URLs and download bookkeeping are kept in browser session storage until the browser session ends; this allows background restart recovery. Collections themselves are kept in the collection tab's memory. The browser independently maintains its normal downloads and history.
+
+Uninstalling removes extension settings. Downloaded files and browser download history are managed by your browser. No external privacy request is required because the publisher receives no user data.
+
+Permissions: downloads saves files and reads their completion state; storage holds preferences/session queue; activeTab enables a user-invoked page session; scripting registers/injects the save handler; contextMenus adds the image-saving action; optional HTTP/HTTPS host access enables automatic activation on sites explicitly approved. No cookies, history, proxy, webRequest or telemetry permissions.
+
+Publisher: DeclanE47. Support: https://github.com/DeclanE47/piclatch/issues. Public policy: https://github.com/DeclanE47/piclatch/blob/main/PRIVACY.md. Keep all store disclosures consistent with this policy.
