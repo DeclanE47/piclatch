@@ -228,7 +228,8 @@ input[type="checkbox"] {
   padding: 24px;
 }
 .popup h1 {
-  font-size: 52px;
+  font-size: 30px;
+  letter-spacing: -1px;
 }
 .popup footer {
   padding: 16px 24px;
@@ -349,7 +350,7 @@ body:has(.grid) main {
   color: #5c584f;
 }
 .unavailable > div:after {
-  content: "Preview unavailable — saving may still work";
+  content: "Preview unavailable - saving may still work";
   display: block;
   font-size: 11px;
 }

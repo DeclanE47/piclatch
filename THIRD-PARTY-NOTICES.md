@@ -1,7 +1,7 @@
 # Third-party notices
 
 Manrope font: SIL OFL-1.1; full licence in fonts/OFL.txt.
-Build/test tools below are not shipped as executable runtime dependencies.
+fflate (MIT) is bundled locally for ZIP generation. Other tools below are build/test dependencies.
 
 ## @esbuild/win32-x64 0.28.2
 

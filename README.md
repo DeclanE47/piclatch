@@ -1,14 +1,14 @@
-# PicLatch — Image Downloader
+# PicLatch - Image Downloader
 
-**See it. Save it.** An original, GPL-3.0-only image saver for Chrome, Edge and Firefox. All features are free. No accounts, advertising, analytics or remote code.
+A GPL-3.0-only image downloader for Chrome, Edge and Firefox. All features are free. No accounts, advertising, analytics or remote code.
 
-## Try the beta
+## Installation
 
-Build with `npm ci` then `npm run build` using Node 22.12+ (Node 26.4 used for this beta). Chrome/Edge: open `chrome://extensions` / `edge://extensions`, enable Developer mode, choose **Load unpacked**, select `dist/chromium`. Firefox: open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, select `dist/firefox/manifest.json`. Firefox installation lasts until restart; permanent installation requires Mozilla signing.
+Build with `npm ci` then `npm run build` using Node 22.12+ (Node 26.4 used for validation). Chrome/Edge: open `chrome://extensions` / `edge://extensions`, enable Developer mode, choose **Load unpacked**, select `dist/chromium`. Firefox: open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, select `dist/firefox/manifest.json`. Firefox installation lasts until restart; permanent installation requires Mozilla signing.
 
 Pin the toolbar icon. On first use, enable everywhere or choose sites as you go. For temporary access, open a website and choose **Enable on this page**. For persistent access, choose **Always on this site** and reload the page after approval. Alt-click an image (Option-click on Mac); use the right-click image menu as an alternative. Pause or exclude a site through the popup. Browser download prompts and destination settings are respected.
 
-**Collect images** opens a temporary tab. Select images, filter by minimum width, and download originals through a three-file queue. Scroll the source page and refresh for newly loaded images. Cancel stops queued/current jobs; completed files remain. Retry applies to failed jobs. Closing the collection abandons queued items but lets active browser downloads finish.
+**Collect images** opens a temporary tab. Select one image to download the original, or select multiple images to download a single ZIP containing the originals. ZIP preparation fetches up to three images at once. Scroll the source page and refresh for newly loaded images. Cancel stops ZIP preparation or pending downloads. If some ZIP images fail, the archive contains the successful images and the failed count is reported. Retry failed retries those images. Keep the collection tab open until the ZIP download completes.
 
 ## Build and inspect
 
@@ -18,7 +18,7 @@ Vite bundles readable (unminified) executable code with no runtime CDN dependenc
 
 ## Image handling
 
-Blob sources must still exist in the source page and are limited to 20 MB. No server bypass, speculative full-resolution URL rewriting, file conversion, persistent library, ZIP export or automatic scrolling. Collection thumbnails may require host cookies/referrers and can fail independently of downloads. Image files and SVGs are never executed by the extension.
+Blob sources must still exist in the source page and are limited to 20 MB. No server bypass, speculative full-resolution URL rewriting, file conversion, persistent library or automatic scrolling. Collection thumbnails may require host cookies/referrers and can fail independently of downloads. Image files and SVGs are never executed by the extension.
 
 Download state lives in session storage to survive background suspension, not browser shutdown. Interrupted startup is shown as failed rather than automatically duplicating a possibly started download. Source-page closure can invalidate blob URLs. Exact source URLs are deduplicated; visually identical files at different URLs remain separate.
 
@@ -31,3 +31,9 @@ The complete source code, editable graphics, fonts and build instructions are in
 ## Licence
 
 Original code and graphics: GPL-3.0-only, see LICENSE. Manrope: SIL Open Font License, bundled in `public/fonts/OFL.txt`. Dependency licences are in their installed packages and the generated third-party notice. The original downloaded extension was not copied into this project.
+
+## Support
+
+Optional donations support development: https://ko-fi.com/declane47. All features remain free.
+
+ZIP exports are built locally with original image bytes. Image-host access is requested only for selected sources. Limit: 2,000 images, 50 MB per image, 250 MB total source bytes per archive. Closing the collection tab cancels preparation.

@@ -93,7 +93,7 @@ void (async () => {
       img.style.cssText = "width:44px;height:44px;object-fit:cover";
       const text = document.createElement("span");
       text.textContent = ok
-        ? "Saved. Nice find."
+        ? "Image saved."
         : error || "Could not save this image.";
       box.append(img, text);
       if (!ok) {

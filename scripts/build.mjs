@@ -5,8 +5,8 @@ import { mkdir, writeFile, cp, readFile, rm } from "node:fs/promises";
 import sharp from "sharp";
 const manifest = {
   manifest_version: 3,
-  name: "PicLatch — Image Downloader",
-  version: "0.1.1",
+  name: "PicLatch - Image Downloader",
+  version: "0.2.0",
   description:
     "Save images with Alt-click. Collect and bulk download original images. Free, open source, no accounts or tracking.",
   permissions: [
@@ -19,7 +19,7 @@ const manifest = {
   optional_host_permissions: ["http://*/*", "https://*/*"],
   action: {
     default_popup: "popup.html",
-    default_title: "PicLatch — See it. Save it.",
+    default_title: "PicLatch - Image Downloader",
   },
   icons: Object.fromEntries(
     [16, 32, 48, 128].map((s) => [s, `icons/icon${s}.png`]),
@@ -35,7 +35,7 @@ for (const size of [16, 32, 48, 128])
 for (const page of ["popup", "onboarding", "collection", "about"])
   await writeFile(
     `${page}.html`,
-    `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>PicLatch — ${page}</title></head><body><div id="app"></div><script type="module" src="/src/ui.ts"></script></body></html>`,
+    `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>PicLatch - ${page}</title></head><body><div id="app"></div><script type="module" src="/src/ui.ts"></script></body></html>`,
   );
 await build({
   build: {

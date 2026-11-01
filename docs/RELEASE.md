@@ -1,8 +1,10 @@
 # Release checklist and store copy
 
+Development is local. The publication steps below are a future checklist only. Do not recreate a GitHub repository, push code or publish packages until the owner requests it.
+
 ## Candidate brand and discoverability
 
-Candidate title: **PicLatch — Image Downloader**. Short description: **Save images with Alt-click. Collect and bulk download original images. Free, open source, no accounts or tracking.**
+Candidate title: **PicLatch - Image Downloader**. Short description: **Save images with Alt-click. Collect and bulk download original images. Free, open source, no accounts or tracking.**
 
 Exact PicLatch searches across the web and indexed Chrome, Edge and Firefox listings returned no matches on 2026-11-01. Pluck was rejected because several extension listings already use it. Before committing a launch brand, search each store directly, GitHub, relevant trademark registers and desired domains/handles; record outcomes. Availability can change. Change brand strings, icons if needed, Firefox add-on ID and package metadata together before first signed release. The temporary Firefox ID is not a registered publisher identity.
 
@@ -19,7 +21,7 @@ Use plain language in title/description: image downloader, save images, Alt-clic
 ## Publication
 
 1. Create the public GPL repository and configure its real URLs in About/README. Enable private security reporting, choose a publisher identity and optional donation recipient. Host privacy policy at a stable public URL.
-2. Freeze tested source, commit and tag `v0.1.0`; attach unsigned packages, source and SHA256SUMS. Do not tag a release as validated until outstanding checks pass.
+2. Freeze tested source, commit and tag the release version; attach unsigned packages, source and SHA256SUMS. Do not tag a release as validated until outstanding checks pass.
 3. Prepare Chrome Web Store, Edge Add-ons and Firefox AMO accounts. Verify each store's current metadata, fees, identity and image-size requirements at submission time.
 4. Capture genuine store screenshots and a short demo from the release build. Supply source and exact build instructions to Mozilla. Explain every permission and declare no collection consistently across stores.
 5. Submit packages, address reviewer findings, and publish only accepted versions linked to matching source tags. Store acceptance is external and is not completed by this local build.
@@ -27,8 +29,8 @@ Use plain language in title/description: image downloader, save images, Alt-clic
 
 ## Listing body draft
 
-See an image worth keeping? Hold Alt (Option on Mac) and click. PicLatch saves the original file directly to your browser downloads.
+Hold Alt (Option on Mac) and click an image to download it. PicLatch saves the original file directly to your browser downloads.
 
-Collect images from the current page, choose the ones you want, and download them together. Filter by width, refresh after scrolling, pause saving or disable it on individual websites.
+Collect images from the current page. Download one image directly or multiple selected images in a ZIP archive. Filter by width, refresh after scrolling, pause saving or disable it on individual websites.
 
 Every feature is free. No account, ads or tracking. Full source is available under GPL-3.0-only. Website access is optional and under your control. Some protected pages and image sources cannot be accessed; PicLatch does not bypass site restrictions.

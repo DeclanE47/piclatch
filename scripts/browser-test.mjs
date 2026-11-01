@@ -1,3 +1,4 @@
+import { unzipSync } from "fflate";
 import { chromium } from "playwright";
 import { createServer } from "node:http";
 import { mkdtemp, readFile, writeFile, mkdir, cp, rm } from "node:fs/promises";
@@ -9,7 +10,7 @@ import { createHash } from "node:crypto";
 await mkdir("test-results", { recursive: true });
 const pixel = await sharp(
   Buffer.from(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560"><rect width="800" height="560" fill="#FFE500"/><circle cx="665" cy="120" r="170" fill="#171717"/><path d="M70 400L260 185l190 215z" fill="#171717"/><text x="65" y="490" fill="#171717" font-family="sans-serif" font-size="68" font-weight="bold">A GOOD FIND.</text></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560"><rect width="800" height="560" fill="#FFE500"/><circle cx="665" cy="120" r="170" fill="#171717"/><path d="M70 400L260 185l190 215z" fill="#171717"/><text x="65" y="490" fill="#171717" font-family="sans-serif" font-size="68" font-weight="bold">SAMPLE IMAGE</text></svg>',
   ),
 )
   .png()
@@ -81,14 +82,18 @@ try {
   assert.equal(await ui.locator(".image-card").count(), 4);
   await ui.screenshot({ path: "test-results/collection.png", fullPage: true });
   await ui.getByRole("button", { name: "Select visible" }).click();
-  await ui.getByRole("button", { name: "Download selected" }).click();
+  await ui.getByRole("button", { name: "Download 4 images as ZIP" }).click();
   await ui.waitForFunction(() =>
-    document.querySelector("#progress").textContent.includes("4 saved"),
+    document.querySelector("#progress").textContent.includes("ZIP saved"),
   );
-  assert.equal(
-    (await worker.evaluate(() => chrome.downloads.search({}))).length,
-    4,
+  const zipDownloads = await worker.evaluate(() => chrome.downloads.search({}));
+  assert.equal(zipDownloads.length, 1);
+  const zip = unzipSync(
+    new Uint8Array(await readFile(zipDownloads[0].filename)),
   );
+  assert.equal(Object.keys(zip).length, 4);
+  for (const entry of Object.values(zip))
+    assert.deepEqual(Buffer.from(entry), pixel);
   const prior = (await worker.evaluate(() => chrome.downloads.search({})))
     .length;
   await page.locator("#one").click({ modifiers: ["Alt"] });
@@ -200,6 +205,56 @@ try {
     ).length,
     0,
   );
+  // Verify partial ZIP results and cancel during image fetching.
+  block = true;
+  await page.evaluate((origin) => {
+    for (const [id, url] of [
+      ["bad", "/broken.png"],
+      ["slow1", "/slow-a.png"],
+      ["slow2", "/slow-b.png"],
+    ]) {
+      const img = document.createElement("img");
+      img.id = id;
+      img.src = origin + url;
+      document.body.append(img);
+    }
+  }, origin);
+  await ui.getByRole("button", { name: "Refresh after scrolling" }).click();
+  await ui.locator(".image-card").nth(6).waitFor();
+  await ui
+    .getByRole("checkbox", { name: "Select image.png", exact: true })
+    .check();
+  await ui
+    .getByRole("checkbox", { name: "Select broken.png", exact: true })
+    .check();
+  await ui.getByRole("button", { name: "Download 2 images as ZIP" }).click();
+  await ui.waitForFunction(
+    () =>
+      document.querySelector("#progress").textContent.includes("ZIP saved") &&
+      document
+        .querySelector("#progress")
+        .textContent.includes("1 images failed"),
+  );
+  await ui.getByRole("button", { name: "Clear selection" }).click();
+  await ui
+    .getByRole("checkbox", { name: "Select slow-a.png", exact: true })
+    .check();
+  await ui
+    .getByRole("checkbox", { name: "Select slow-b.png", exact: true })
+    .check();
+  const beforeCancel = (
+    await worker.evaluate(() => chrome.downloads.search({}))
+  ).length;
+  await ui.getByRole("button", { name: "Download 2 images as ZIP" }).click();
+  await ui.waitForFunction(() => document.querySelector("#download").disabled);
+  await ui.getByRole("button", { name: "Cancel queue" }).click();
+  await ui.waitForFunction(() =>
+    document.querySelector("#progress").textContent.includes("ZIP cancelled"),
+  );
+  assert.equal(
+    (await worker.evaluate(() => chrome.downloads.search({}))).length,
+    beforeCancel,
+  );
   await ui.goto(ext + "onboarding.html");
   await ui.screenshot({ path: "test-results/onboarding.png", fullPage: true });
   await ui.goto(ext + "about.html");
@@ -259,7 +314,7 @@ try {
         passed: true,
         scenarios: [
           "discovery: responsive/background/blob/deduplication",
-          "bulk queue: 4 original files",
+          "multi-selection ZIP: 4 original images with byte integrity",
           "Alt-click and completion feedback",
           "download byte integrity",
           "pause",
@@ -269,6 +324,8 @@ try {
           "onboarding/popup/about rendering",
           "popup site/all/no-access states",
           "copyright notice and removed tagline",
+          "partial ZIP with failure count",
+          "ZIP fetch cancellation without archive download",
         ],
         pageErrors: errors,
       },

@@ -1,6 +1,6 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 let text =
-  "# Third-party notices\n\nManrope font: SIL OFL-1.1; full licence in fonts/OFL.txt.\nBuild/test tools below are not shipped as executable runtime dependencies.\n\n";
+  "# Third-party notices\n\nManrope font: SIL OFL-1.1; full licence in fonts/OFL.txt.\nfflate (MIT) is bundled locally for ZIP generation. Other tools below are build/test dependencies.\n\n";
 async function visit(root) {
   for (const entry of await readdir(root, { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name.startsWith(".")) continue;
