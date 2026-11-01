@@ -427,3 +427,19 @@ dd {
 [hidden] {
   display: none !important;
 }
+
+.support-link {
+  flex-shrink: 0;
+  margin-left: 12px;
+  padding: 8px 10px;
+  border: 1px solid #171717;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.support-link:hover {
+  background: #ffe500;
+}

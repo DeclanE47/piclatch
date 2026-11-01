@@ -11,7 +11,7 @@ import "./style.css";
 const root = document.querySelector<HTMLElement>("#app")!;
 const page = location.pathname.split("/").pop()?.split(".")[0] || "popup";
 const brand = "PicLatch";
-root.innerHTML = `<header><a class="brand" href="onboarding.html" target="_blank"><img src="icons/icon48.png" alt="">PicLatch</a></header><main></main><footer><span>Free and open source</span><a href="about.html" target="_blank">About & privacy ↗</a></footer>`;
+root.innerHTML = `<header><a class="brand" href="onboarding.html" target="_blank"><img src="icons/icon48.png" alt="">PicLatch</a><a class="support-link" href="https://ko-fi.com/declane47" target="_blank" rel="noopener noreferrer">Support on Ko-fi</a></header><main></main><footer><span>Free and open source</span><a href="about.html" target="_blank">About & privacy ↗</a></footer>`;
 const main = root.querySelector("main")!;
 function status(text: string, error = false) {
   let box = document.querySelector<HTMLElement>("#status");
