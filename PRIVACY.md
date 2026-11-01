@@ -1,4 +1,4 @@
-# Privacy policy - PicLatch beta
+# Privacy policy - PicLatch
 
 Effective 1 November 2026. PicLatch collects and transmits no analytics, account details, browsing history or image collections to its publisher. No advertising, accounts or remote executable code.
 
