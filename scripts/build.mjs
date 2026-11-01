@@ -82,7 +82,7 @@ for (const browser of ["chromium", "firefox"]) {
   };
   if (browser === "firefox")
     m.browser_specific_settings = {
-      gecko_android: { strict_min_version: "142.0" },
+
       gecko: {
         id: "piclatch@declane47.github.io",
         strict_min_version: "140.0",
@@ -92,3 +92,4 @@ for (const browser of ["chromium", "firefox"]) {
   else m.minimum_chrome_version = "120";
   await writeFile(`${dest}/manifest.json`, JSON.stringify(m, null, 2));
 }
+
