@@ -19,3 +19,5 @@ Users are responsible for ensuring that downloading, copying, storing, sharing a
 To the extent permitted by applicable law, PicLatch is supplied without warranty, and its contributors are not liable for users' unlawful use or infringement. This does not exclude liability or statutory rights that cannot lawfully be excluded.
 
 ZIP preparation reads selected image files directly from their hosts using website access granted by the user. The archive is built in memory in the collection tab and is not uploaded to any service. The optional Ko-fi support link opens an external website only when clicked.
+
+Publisher: DeclanE47. Support: https://github.com/DeclanE47/piclatch/issues.

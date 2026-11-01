@@ -1,39 +1,46 @@
 # PicLatch - Image Downloader
 
-A GPL-3.0-only image downloader for Chrome, Edge and Firefox. All features are free. No accounts, advertising, analytics or remote code.
+Save an image with Alt-click, or select several images from a page and download them in a ZIP. PicLatch keeps the original files. It is free, open source and available for Chrome, Edge and Firefox.
 
-## Installation
+## Using PicLatch
 
-Build with `npm ci` then `npm run build` using Node 22.12+ (Node 26.4 used for validation). Chrome/Edge: open `chrome://extensions` / `edge://extensions`, enable Developer mode, choose **Load unpacked**, select `dist/chromium`. Firefox: open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, select `dist/firefox/manifest.json`. Firefox installation lasts until restart; permanent installation requires Mozilla signing.
+- Hold Alt (Option on Mac) and click an image to save it. You can change the shortcut in Settings.
+- Open the toolbar popup and choose **Collect images** to select images from the current page. One selected image downloads directly; multiple images download as one ZIP.
+- Filter by width, or scroll the source page and refresh to find newly loaded images.
+- Pause saving or disable it on a particular website from the popup.
+- Choose whether to enable website access everywhere or on selected sites.
 
-Pin the toolbar icon. On first use, enable everywhere or choose sites as you go. For temporary access, open a website and choose **Enable on this page**. For persistent access, choose **Always on this site** and reload the page after approval. Alt-click an image (Option-click on Mac); use the right-click image menu as an alternative. Pause or exclude a site through the popup. Browser download prompts and destination settings are respected.
+ZIPs are created on your device. If some images fail, PicLatch reports the failed count and lets you retry. Limits per ZIP: 2,000 images, 50 MB per image and 250 MB of source files. Keep the collection tab open until the ZIP finishes downloading.
 
-**Collect images** opens a temporary tab. Select one image to download the original, or select multiple images to download a single ZIP containing the originals. ZIP preparation fetches up to three images at once. Scroll the source page and refresh for newly loaded images. Cancel stops ZIP preparation or pending downloads. If some ZIP images fail, the archive contains the successful images and the failed count is reported. Retry failed retries those images. Keep the collection tab open until the ZIP download completes.
+## Website not working?
 
-## Build and inspect
+[Open an issue](https://github.com/DeclanE47/piclatch/issues/new). Include the website, browser, PicLatch version and what went wrong. The version is shown on **About & privacy**. Leave out private links, passwords and personal information.
 
-`npm test` runs URL, filename and deduplication checks. `npx playwright install chromium` then `npm run test:browser` exercises the built extension against local fixtures in an isolated browser profile. This test grants localhost host access in a temporary copy; production packages retain optional-only access. Native permission approval must also be tested manually. `npm run package` creates Chromium, Firefox and source ZIPs plus SHA-256 checksums in `artifacts/`.
+If you can fix it, pull requests are welcome. Otherwise, I'll look into it when I can.
 
-Vite bundles readable (unminified) executable code with no runtime CDN dependencies. `package-lock.json` pins the dependency graph. ZIP entry dates and ordering are fixed for reproducible packaging; compare unsigned packages on the same supported Node/platform toolchain. Browser signing changes the final store package.
+## Build from source
 
-## Image handling
+Use Node 22.12 or later. The release was built with Node 26.4.
 
-Blob sources must still exist in the source page and are limited to 20 MB. No server bypass, speculative full-resolution URL rewriting, file conversion, persistent library or automatic scrolling. Collection thumbnails may require host cookies/referrers and can fail independently of downloads. Image files and SVGs are never executed by the extension.
+```sh
+npm ci
+npm run build
+npm test
+npx playwright install chromium
+npm run test:browser
+npm run package
+```
 
-Download state lives in session storage to survive background suspension, not browser shutdown. Interrupted startup is shown as failed rather than automatically duplicating a possibly started download. Source-page closure can invalidate blob URLs. Exact source URLs are deduplicated; visually identical files at different URLs remain separate.
+Chrome and Edge: enable Developer mode in the extensions page, choose **Load unpacked** and select **dist/chromium**. Firefox: open **about:debugging**, choose **Load Temporary Add-on** and select **dist/firefox/manifest.json**. A permanent Firefox installation requires Mozilla signing.
 
-## Development
+Packages, source archives and SHA-256 checksums are written to **artifacts/**. Builds use the locked dependencies and bundle all executable code locally. The browser test runs the built extension in a temporary Chromium profile with a localhost-only host grant. It checks downloads, ZIP contents, permissions UI, retries and cancellation.
 
-See `docs/RELEASE.md` for naming, human testing, cross-browser validation and store submission gates. PicLatch is a candidate name: exact web/store-index searches returned no matching results on 2026-11-01; this is not trademark clearance or a reservation. Do not publish under the previously proposed Pluck name, which has existing extension conflicts.
+## Privacy
 
-The complete source code, editable graphics, fonts and build instructions are included in this folder. Review or modify the code locally under GPL-3.0-only.
+No accounts, advertising or analytics. Image requests go directly to their existing hosts. Preferences stay on your device. See [PRIVACY.md](PRIVACY.md) for details and permission explanations.
 
-## Licence
+## Licence and support
 
-Original code and graphics: GPL-3.0-only, see LICENSE. Manrope: SIL Open Font License, bundled in `public/fonts/OFL.txt`. Dependency licences are in their installed packages and the generated third-party notice. The original downloaded extension was not copied into this project.
+Code and original graphics: GPL-3.0-only. Manrope uses the SIL Open Font License. Third-party licences are included in **THIRD-PARTY-NOTICES.md**.
 
-## Support
-
-Optional donations support development: https://ko-fi.com/declane47. All features remain free.
-
-ZIP exports are built locally with original image bytes. Image-host access is requested only for selected sources. Limit: 2,000 images, 50 MB per image, 250 MB total source bytes per archive. Closing the collection tab cancels preparation.
+[Support development on Ko-fi](https://ko-fi.com/declane47). All features remain free.
