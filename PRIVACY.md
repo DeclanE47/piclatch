@@ -10,7 +10,7 @@ Uninstalling removes extension settings. Downloaded files and browser download h
 
 Permissions: downloads saves files and reads their completion state; storage holds preferences/session queue; activeTab enables a user-invoked page session; scripting registers/injects the save handler; contextMenus adds the image-saving action; optional HTTP/HTTPS host access enables automatic activation on sites explicitly approved. No cookies, history, proxy, webRequest or telemetry permissions.
 
-Publisher: DeclanE47. Support: https://github.com/DeclanE47/piclatch/issues. Public policy: https://github.com/DeclanE47/piclatch/blob/main/PRIVACY.md. Keep all store disclosures consistent with this policy.
+This policy is included with the extension in PRIVACY.md and the About & privacy screen.
 
 ## Copyright and responsible use
 

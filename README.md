@@ -16,17 +16,17 @@ Pin the toolbar icon. On first use, enable everywhere or choose sites as you go.
 
 Vite bundles readable (unminified) executable code with no runtime CDN dependencies. `package-lock.json` pins the dependency graph. ZIP entry dates and ordering are fixed for reproducible packaging; compare unsigned packages on the same supported Node/platform toolchain. Browser signing changes the final store package.
 
-## Limitations
+## Image handling
 
-This is a local beta, not a claim of store readiness. Browser-internal pages, store pages, protected cross-origin frames, closed shadow roots and sites that block source access may be unavailable. Blob sources must still exist in the source page and are limited to 20 MB. No server bypass, speculative full-resolution URL rewriting, file conversion, persistent library, ZIP export or automatic scrolling. Collection thumbnails may require host cookies/referrers and can fail independently of downloads. Image files and SVGs are never executed by the extension.
+Blob sources must still exist in the source page and are limited to 20 MB. No server bypass, speculative full-resolution URL rewriting, file conversion, persistent library, ZIP export or automatic scrolling. Collection thumbnails may require host cookies/referrers and can fail independently of downloads. Image files and SVGs are never executed by the extension.
 
 Download state lives in session storage to survive background suspension, not browser shutdown. Interrupted startup is shown as failed rather than automatically duplicating a possibly started download. Source-page closure can invalidate blob URLs. Exact source URLs are deduplicated; visually identical files at different URLs remain separate.
 
-## Before public release
+## Development
 
 See `docs/RELEASE.md` for naming, human testing, cross-browser validation and store submission gates. PicLatch is a candidate name: exact web/store-index searches returned no matching results on 2026-11-01; this is not trademark clearance or a reservation. Do not publish under the previously proposed Pluck name, which has existing extension conflicts.
 
-Public source and support: https://github.com/DeclanE47/piclatch. Publisher: DeclanE47. Store URLs and a donation recipient are not configured. No fake links or payment destinations are included. All code, editable SVG graphics, fonts and build scripts are supplied. Optional donations belong only in About and this README after a real recipient is chosen; no feature gating or nagging.
+The complete source code, editable graphics, fonts and build instructions are included in this folder. Review or modify the code locally under GPL-3.0-only.
 
 ## Licence
 
