@@ -20,6 +20,7 @@ async function tree(dir, skip = []) {
   }
   return result;
 }
+const { version } = JSON.parse(await readFile("package.json", "utf8"));
 const checks = [];
 for (const target of ["chromium", "firefox", "source"]) {
   const files = await tree(target === "source" ? "." : `dist/${target}`, [
@@ -30,7 +31,7 @@ for (const target of ["chromium", "firefox", "source"]) {
     "test-results",
   ]);
   const zip = zipSync(files, { level: 9 });
-  const name = `piclatch-0.1.0-${target}.zip`;
+  const name = `piclatch-${version}-${target}.zip`;
   await writeFile("artifacts/" + name, zip);
   checks.push(createHash("sha256").update(zip).digest("hex") + "  " + name);
 }

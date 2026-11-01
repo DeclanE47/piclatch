@@ -6,7 +6,7 @@ import sharp from "sharp";
 const manifest = {
   manifest_version: 3,
   name: "PicLatch — Image Downloader",
-  version: "0.1.0",
+  version: "0.1.1",
   description:
     "Save images with Alt-click. Collect and bulk download original images. Free, open source, no accounts or tracking.",
   permissions: [

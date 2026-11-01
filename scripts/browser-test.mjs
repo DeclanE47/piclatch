@@ -204,8 +204,52 @@ try {
   await ui.screenshot({ path: "test-results/onboarding.png", fullPage: true });
   await ui.goto(ext + "about.html");
   await ui.screenshot({ path: "test-results/about.png", fullPage: true });
+  assert.ok(
+    await ui
+      .getByRole("heading", { name: "Copyright & responsible use" })
+      .count(),
+  );
+  await ui.addInitScript(
+    ({ tabId, origin }) => {
+      chrome.tabs.query = async () => [{ id: tabId, url: origin }];
+      const real = chrome.permissions.contains.bind(chrome.permissions);
+      chrome.permissions.contains = async (permission) => {
+        const mode = localStorage.getItem("permission-test");
+        if (mode === "all") return true;
+        if (mode === "none") return false;
+        return real(permission);
+      };
+    },
+    { tabId, origin },
+  );
   await ui.goto(ext + "popup.html");
   await ui.locator("#pause").waitFor();
+  await ui.locator("#mode-label").waitFor();
+  assert.equal(
+    await ui.locator("#access-actions").isVisible(),
+    false,
+    "site grant hides redundant access buttons",
+  );
+  assert.equal(await ui.getByText("THE GOOD STUFF, KEPT.").count(), 0);
+  await ui.evaluate(() => localStorage.setItem("permission-test", "all"));
+  await ui.reload();
+  await ui.locator("#mode-label").waitFor();
+  assert.equal(await ui.locator("#access-actions").isVisible(), false);
+  await ui.locator("summary").click();
+  assert.equal(
+    await ui.locator("#all").isVisible(),
+    false,
+    "all-site grant hides enable-all option",
+  );
+  await ui.evaluate(() => localStorage.setItem("permission-test", "none"));
+  await ui.reload();
+  await ui.locator("#mode-label").waitFor();
+  assert.equal(await ui.locator("#activate").isVisible(), true);
+  assert.equal(await ui.locator("#site").isVisible(), true);
+  await ui.evaluate(() => localStorage.setItem("permission-test", "all"));
+  await ui.reload();
+  await ui.locator("#mode-label").waitFor();
+
   await ui.screenshot({ path: "test-results/popup.png" });
   assert.deepEqual(errors, []);
   await writeFile(
@@ -223,6 +267,8 @@ try {
           "403 failure and successful retry",
           "cancel queued and active downloads",
           "onboarding/popup/about rendering",
+          "popup site/all/no-access states",
+          "copyright notice and removed tagline",
         ],
         pageErrors: errors,
       },

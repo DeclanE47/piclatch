@@ -11,3 +11,9 @@ Uninstalling removes extension settings. Downloaded files and browser download h
 Permissions: downloads saves files and reads their completion state; storage holds preferences/session queue; activeTab enables a user-invoked page session; scripting registers/injects the save handler; contextMenus adds the image-saving action; optional HTTP/HTTPS host access enables automatic activation on sites explicitly approved. No cookies, history, proxy, webRequest or telemetry permissions.
 
 Publisher: DeclanE47. Support: https://github.com/DeclanE47/piclatch/issues. Public policy: https://github.com/DeclanE47/piclatch/blob/main/PRIVACY.md. Keep all store disclosures consistent with this policy.
+
+## Copyright and responsible use
+
+Users are responsible for ensuring that downloading, copying, storing, sharing and using images is lawful, including compliance with copyright, intellectual property rights, licence terms, attribution, privacy rights and website terms. Only save and use content you own, have permission to use, or are otherwise legally entitled to use. Being viewable online does not make an image free to reuse. Rights remain with their holders; the GPL software licence grants no rights to downloaded images. PicLatch does not verify permissions or authorise bypassing restrictions.
+
+To the extent permitted by applicable law, PicLatch is supplied without warranty, and its contributors are not liable for users' unlawful use or infringement. This does not exclude liability or statutory rights that cannot lawfully be excluded.
