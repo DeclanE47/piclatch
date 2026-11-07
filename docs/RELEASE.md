@@ -8,5 +8,7 @@ Version: 0.1.0
 - Firefox desktop package validation reports no errors. The validator also reports an Android minimum-version warning; this release is not listed for Android.
 - Store screenshots use the actual extension interface and original sample graphics.
 
-The full operating-system/browser matrix and five-person usability trial have not been completed. All three store submissions are awaiting review; see [SUBMISSIONS.md](SUBMISSIONS.md). Static Firefox validation is not a Firefox runtime test.
+Version 0.1.0 is published on Chrome Web Store, Microsoft Edge Add-ons and Firefox Add-ons; see [store listings](SUBMISSIONS.md).
+
+The full operating-system/browser matrix and five-person usability trial have not been completed. Static Firefox validation is not a Firefox runtime test.
 

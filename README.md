@@ -2,7 +2,15 @@
 
 Save an image with Alt-click, or select several images from a page and download them in a ZIP. PicLatch keeps the original files. It is free, open source and built for Chrome, Edge and Firefox.
 
-Version 0.1.0 was submitted to all three stores on 1 November 2026 and is awaiting review. [Download the release packages and source](https://github.com/DeclanE47/piclatch/releases/tag/v0.1.0), or see the [submission details](docs/SUBMISSIONS.md).
+## Install PicLatch
+
+Version 0.1.0 is published on all three stores:
+
+- [Install for Chrome](https://chromewebstore.google.com/detail/piclatch-image-downloader/ggicgejadlmlpodganoimgaeanfpfknj)
+- [Install for Edge](https://microsoftedge.microsoft.com/addons/detail/piclatch-image-download/kdmpdhmckfddlbfdpgdonajpffbijbmi)
+- [Install for Firefox](https://addons.mozilla.org/en-GB/firefox/addon/piclatch-image-downloader/)
+
+[Release packages, source and checksums](https://github.com/DeclanE47/piclatch/releases/tag/v0.1.0) are also available.
 
 ## Using PicLatch
 
