@@ -43,7 +43,7 @@ npm run package
 
 Chrome and Edge: enable Developer mode in the extensions page, choose **Load unpacked** and select **dist/chromium**. Firefox: open **about:debugging**, choose **Load Temporary Add-on** and select **dist/firefox/manifest.json**. A permanent Firefox installation requires Mozilla signing.
 
-Packages, source archives and SHA-256 checksums are written to **artifacts/**. Builds use the locked dependencies and bundle all executable code locally. The browser test runs the built extension in a temporary Chromium profile with a localhost-only host grant. It checks downloads, ZIP contents, permissions UI, retries and cancellation.
+Browser builds are written to **dist/chromium/** and **dist/firefox/**. Packages, source archives and SHA-256 checksums are written to **artifacts/**. See the [testing guide](docs/VALIDATION.md) for test coverage and manual browser checks.
 
 ## Privacy
 

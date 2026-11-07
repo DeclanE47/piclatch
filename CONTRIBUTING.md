@@ -1,3 +1,9 @@
 # Contributing
 
-Use the locked dependencies and the README build commands. Keep network activity limited to user-requested image hosts. Add meaningful fixture coverage for changes to discovery, permissions or download state. Run build, unit tests and browser integration before submitting a change. Include screenshots for UI changes and keyboard/reduced-motion checks. Contributions are licensed GPL-3.0-only. No assignment of ownership is required.
+Bug reports and pull requests are welcome. For website problems, include a public URL, your browser and PicLatch version, and the steps that reproduce the problem.
+
+Use the [build instructions](README.md#build-from-source) to get started. The [testing guide](docs/VALIDATION.md) explains the automated checks and manual browser checks. Include a test for a bug fix where practical, and screenshots for interface changes.
+
+PicLatch processes images locally and sends image requests directly to their hosts. Contributions should preserve that privacy model.
+
+Contributions are licensed under GPL-3.0-only. You keep ownership of your work.

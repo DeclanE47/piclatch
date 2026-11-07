@@ -1,14 +1,14 @@
-# Release checks
+# PicLatch 0.1.0
 
-Version: 0.1.0
+The first release includes:
 
-- Build and TypeScript checks pass.
-- Nine unit tests pass.
-- Chromium integration checks cover original file bytes, ZIP entries, partial failures, retries, cancellation and permission UI states.
-- Firefox desktop package validation reports no errors. The validator also reports an Android minimum-version warning; this release is not listed for Android.
-- Store screenshots use the actual extension interface and original sample graphics.
+- Alt / Option-click saving, with Shift and Ctrl alternatives.
+- A page image grid with a minimum-width filter and image selection.
+- ZIP downloads for multiple selected images, with the original files preserved.
+- Pause, individual site exclusions and optional website access.
+- Download subfolder settings.
+- Version information and website issue links on About & privacy.
 
-Version 0.1.0 is published on Chrome Web Store, Microsoft Edge Add-ons and Firefox Add-ons; see [store listings](SUBMISSIONS.md).
+Available for [Chrome, Edge and Firefox desktop](SUBMISSIONS.md). All features are free.
 
-The full operating-system/browser matrix and five-person usability trial have not been completed. Static Firefox validation is not a Firefox runtime test.
-
+[Download the release packages, source and checksums](https://github.com/DeclanE47/piclatch/releases/tag/v0.1.0).
